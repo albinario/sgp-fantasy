@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import type { ComponentType } from 'react'
 
 import { auth0 } from '@/lib/auth0'
 import { getRoles } from '@/lib/auth0-claims'
@@ -36,6 +37,6 @@ const ProtectedPage = auth0.withPageAuthRequired(
 		)
 	},
 	{ returnTo: '/protected' },
-)
+) as ComponentType
 
 export default ProtectedPage

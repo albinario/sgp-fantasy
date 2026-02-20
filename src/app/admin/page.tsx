@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import type { ComponentType } from 'react'
 
 import { auth0 } from '@/lib/auth0'
 import { getRoles } from '@/lib/auth0-claims'
@@ -23,6 +24,6 @@ const AdminPage = auth0.withPageAuthRequired(
 		)
 	},
 	{ returnTo: '/admin' },
-)
+) as ComponentType
 
 export default AdminPage
