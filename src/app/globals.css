@@ -6,6 +6,7 @@ html {
 body {
 	background-color: var(--background);
 	color: var(--text-primary);
+	padding-bottom: var(--spacing-2xl);
 
 	a {
 		color: var(--text-secondary);

@@ -16,4 +16,5 @@ export const navItems: TNavItem[] = [
 			},
 		],
 	},
+	{ label: 'Input', href: '/test/input' },
 ]
