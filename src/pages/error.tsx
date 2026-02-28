@@ -9,6 +9,6 @@ type TErrorPage = TErrorProps & {
 	fetchFailed: string
 }
 
-export function ErrorPage({ error, label, fetchFailed }: TErrorPage) {
+export default function ErrorPage({ error, label, fetchFailed }: TErrorPage) {
 	return <Message {...{ label, content: error.message ?? fetchFailed }} />
 }

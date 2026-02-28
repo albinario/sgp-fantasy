@@ -1,6 +1,6 @@
 'use client'
 
-import { ErrorPage } from '@/pages/error'
+import ErrorPage from '@/pages/error'
 import type { TErrorProps } from '@/types/error'
 
 import { fetchFailed, metaData } from './constants'
