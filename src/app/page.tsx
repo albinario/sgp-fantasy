@@ -1,6 +1,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
+import { Fragment } from 'react/jsx-runtime'
+
 import { auth0 } from '@/lib/auth0'
 
 import styles from './page.module.css'
@@ -10,7 +12,7 @@ export default async function Home() {
 	const user = session?.user
 
 	return (
-		<main>
+		<Fragment>
 			<Image
 				className={styles.logo}
 				src="/next.svg"
@@ -34,6 +36,6 @@ export default async function Home() {
 				<Link href="/protected">User protected page</Link>
 				<Link href="/admin">Admin protected page</Link>
 			</div>
-		</main>
+		</Fragment>
 	)
 }

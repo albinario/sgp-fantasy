@@ -1,4 +1,4 @@
-import type { ComponentType } from 'react'
+import { type ComponentType, Fragment } from 'react'
 
 import Link from 'next/link'
 
@@ -12,16 +12,17 @@ const AdminPage = auth0.withPageAuthRequired(
 		const roles = getRoles(user as Record<string, unknown> | undefined)
 
 		return (
-			<main style={{ padding: '2rem' }}>
+			<Fragment>
 				<h1>Admin page</h1>
 				<p>Signed in as {user?.name ?? user?.email}.</p>
 				<p>Roles: {roles.length ? roles.join(', ') : 'none'}</p>
+
 				<div style={{ display: 'flex', gap: '1rem' }}>
 					<Link href="/">Back home</Link>
 					<Link href="/protected">User page</Link>
 					<a href="/auth/logout">Log out</a>
 				</div>
-			</main>
+			</Fragment>
 		)
 	},
 	{ returnTo: '/admin' },

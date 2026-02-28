@@ -17,4 +17,6 @@ export const navItems: TNavItem[] = [
 		],
 	},
 	{ label: 'Input', href: '/test/input' },
+	{ label: 'Users', href: '/users' },
+	{ label: 'Comments', href: '/comments' },
 ]

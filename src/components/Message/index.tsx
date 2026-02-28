@@ -1,3 +1,5 @@
+import { Fragment } from 'react/jsx-runtime'
+
 type TMessage = {
 	content?: string
 	label?: string
@@ -5,9 +7,9 @@ type TMessage = {
 
 export function Message({ content, label }: TMessage) {
 	return (
-		<main>
+		<Fragment>
 			{label ? <h1>{label}</h1> : null}
 			{content ? <p>{content}</p> : null}
-		</main>
+		</Fragment>
 	)
 }

@@ -1,6 +1,6 @@
 'use client'
 
-import { Message } from '../Message'
+import { Fragment } from 'react/jsx-runtime'
 
 import type { TErrorProps } from '@/types/error'
 
@@ -14,5 +14,10 @@ export function ErrorFallback({
 	label = 'Error',
 	fetchFailed = 'Something went wrong',
 }: TErrorFallback) {
-	return <Message label={label} content={error?.message ?? fetchFailed} />
+	return (
+		<Fragment>
+			<h1>{label}</h1>
+			<p>{error?.message ?? fetchFailed}</p>
+		</Fragment>
+	)
 }

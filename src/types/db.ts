@@ -5,38 +5,52 @@
 
 import type { ColumnType } from "kysely";
 
+export type Generated<T> = T extends ColumnType<infer S, infer I, infer U>
+  ? ColumnType<S, I | undefined, U>
+  : ColumnType<T, T | undefined, T>;
+
 export type Timestamp = ColumnType<Date, Date | string, Date | string>;
 
 export interface Comments {
-  comment: string | null;
-  date_posted: Timestamp | null;
-  gp_id: string | null;
-  id: number | null;
-  read_by: string | null;
-  reply_to: string | null;
-  user_id: number | null;
+  comment: string;
+  date_posted: Generated<Timestamp>;
+  gp_id: number | null;
+  id: Generated<number>;
+  reply_to: number | null;
+  user_id: number;
 }
 
 export interface Riders {
-  active: string | null;
-  id: number | null;
-  name: string | null;
-  nation_id: number | null;
-  number: number | null;
-  substitute: string | null;
+  active: number | null;
+  id: Generated<number>;
+  name: Generated<string>;
+  nation_id: number;
+  number: number;
+  substitute: number | null;
 }
 
 export interface RidersResults {
-  gp_id: number | null;
-  id: number | null;
-  podium: string | null;
-  points: number | null;
-  races: number | null;
-  rider_id: number | null;
+  gp_id: number;
+  id: Generated<number>;
+  podium: number | null;
+  points: Generated<number>;
+  races: Generated<number>;
+  rider_id: number;
+}
+
+export interface Users {
+  admin: number | null;
+  date_created: Generated<Timestamp>;
+  email: Generated<string>;
+  first_name: Generated<string>;
+  id: Generated<number>;
+  last_name: Generated<string>;
+  reminder: Generated<number>;
 }
 
 export interface DB {
   comments: Comments;
   riders: Riders;
   riders_results: RidersResults;
+  users: Users;
 }

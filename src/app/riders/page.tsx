@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-import { Card } from '@/components/Card'
+import { Fragment } from 'react/jsx-runtime'
 
 import { metaData, noData } from './constants'
 import { getRiders } from './data'
@@ -11,8 +11,6 @@ export const metadata: Metadata = metaData
 
 export default async function RidersPage() {
 	const riders = await getRiders()
-
-	if (!riders?.length) throw new Error(noData)
 
 	const alignRight = new Set(['id'])
 	const italic = new Set(['number'])
@@ -27,10 +25,12 @@ export default async function RidersPage() {
 	}))
 
 	return (
-		<main>
+		<Fragment>
 			<h1>{metaData.title}</h1>
 
-			<Card>
+			{riders.length <= 0 ? (
+				<p>{noData}</p>
+			) : (
 				<table>
 					<thead>
 						<tr>
@@ -68,7 +68,7 @@ export default async function RidersPage() {
 						))}
 					</tbody>
 				</table>
-			</Card>
-		</main>
+			)}
+		</Fragment>
 	)
 }

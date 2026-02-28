@@ -10,9 +10,10 @@ export async function createComment(
 ): Promise<CommentFormState> {
 	try {
 		const raw = formData.get('comment')
-		const comment = typeof raw === 'string' ? raw.trim() || null : null
+		const comment = typeof raw === 'string' ? raw.trim() : null
+		if (!comment) return { success: false, error: 'Comment is required' }
 
-		await db.insertInto('comments').values({ comment }).execute()
+		await db.insertInto('comments').values({ comment, user_id: 1 }).execute()
 		return { success: true }
 	} catch (e) {
 		const message = e instanceof Error ? e.message : 'Failed to save comment'
