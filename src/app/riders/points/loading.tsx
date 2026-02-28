@@ -1,8 +1,7 @@
+import { LoadingFallback } from '@/components/LoadingFallback'
+
+import { metaData } from './constants'
+
 export default function Loading() {
-	return (
-		<main>
-			<h1>Rider Points</h1>
-			<p>Loading…</p>
-		</main>
-	)
+	return <LoadingFallback title={metaData.title} />
 }

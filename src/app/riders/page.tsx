@@ -1,26 +1,16 @@
-import { Message } from '@/components/Message'
+import type { Metadata } from 'next'
+
+import { Fragment } from 'react/jsx-runtime'
+
+import { metaData, noData } from './constants'
+import { getRiders } from './data'
 
 import type { ColumnMeta } from '@/types/column-meta'
 
-import { getRiders } from './data'
+export const metadata: Metadata = metaData
 
 export default async function RidersPage() {
-	const result = await getRiders()
-
-	if (!result.success) {
-		return (
-			<Message
-				message={result.message ?? `Failed to load riders`}
-				title='Riders'
-			/>
-		)
-	}
-
-	const riders = result.data
-
-	if (!riders || !!riders.length) {
-		return <Message message='No riders in the database.' title='Riders' />
-	}
+	const riders = await getRiders()
 
 	const alignRight = new Set(['id'])
 	const italic = new Set(['number'])
@@ -35,46 +25,50 @@ export default async function RidersPage() {
 	}))
 
 	return (
-		<main>
-			<h1>Riders</h1>
+		<Fragment>
+			<h1>{metaData.title}</h1>
 
-			<table>
-				<thead>
-					<tr>
-						{columns.map((col) => (
-							<th
-								key={String(col.key)}
-								style={{ textAlign: col.align ?? 'left' }}
-							>
-								{col.label}
-							</th>
-						))}
-					</tr>
-				</thead>
-
-				<tbody>
-					{riders.map((row) => (
-						<tr key={String(row.id)}>
-							{columns.map((col) => {
-								const raw = row[col.key]
-								const value = col.format ? col.format(raw) : String(raw ?? '')
-
-								return (
-									<td
-										key={String(col.key)}
-										style={{
-											textAlign: col.align ?? 'left',
-											fontStyle: col.italic ? 'italic' : undefined,
-										}}
-									>
-										{value}
-									</td>
-								)
-							})}
+			{riders.length <= 0 ? (
+				<p>{noData}</p>
+			) : (
+				<table>
+					<thead>
+						<tr>
+							{columns.map((col) => (
+								<th
+									key={String(col.key)}
+									style={{ textAlign: col.align ?? 'left' }}
+								>
+									{col.label}
+								</th>
+							))}
 						</tr>
-					))}
-				</tbody>
-			</table>
-		</main>
+					</thead>
+
+					<tbody>
+						{riders.map((row) => (
+							<tr key={String(row.id)}>
+								{columns.map((col) => {
+									const raw = row[col.key]
+									const value = col.format ? col.format(raw) : String(raw ?? '')
+
+									return (
+										<td
+											key={String(col.key)}
+											style={{
+												textAlign: col.align ?? 'left',
+												fontStyle: col.italic ? 'italic' : undefined,
+											}}
+										>
+											{value}
+										</td>
+									)
+								})}
+							</tr>
+						))}
+					</tbody>
+				</table>
+			)}
+		</Fragment>
 	)
 }
