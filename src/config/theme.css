@@ -1,6 +1,7 @@
 :root {
 	/* Theme colors (light default) */
 	--background: #fafafa;
+	--background-card: #847878;
 	--foreground: #fff;
 	--text-primary: #000;
 	--text-secondary: #666;
@@ -38,7 +39,7 @@
 @media (prefers-color-scheme: dark) {
 	:root {
 		--background: #1f1f1f;
-		--foreground: #0a0a0a;
+		--foreground: #1d1919;
 		--text-primary: #c05b41;
 		--text-secondary: #999;
 	}
