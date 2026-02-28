@@ -16,6 +16,7 @@
 	"dependencies": {
 		"@auth0/nextjs-auth0": "^4.14.1",
 		"@neondatabase/serverless": "^1.0.2",
+		"@vercel/analytics": "^1.6.1",
 		"kysely": "^0.28.11",
 		"kysely-neon": "^2.0.2",
 		"next": "16.1.6",

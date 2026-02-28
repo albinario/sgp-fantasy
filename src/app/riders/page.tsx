@@ -12,6 +12,8 @@ export const metadata: Metadata = metaData
 export default async function RidersPage() {
 	const riders = await getRiders()
 
+	console.log(riders)
+
 	if (!riders?.length) throw new Error(noData)
 
 	const alignRight = new Set(['id'])
