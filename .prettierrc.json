@@ -1,5 +1,5 @@
 {
-	"jsxSingleQuote": true,
+	"jsxSingleQuote": false,
 	"semi": false,
 	"singleQuote": true,
 	"tabWidth": 2,
@@ -18,8 +18,8 @@
 		"^@/ui/(.*)$",
 		"^@/hooks/(.*)$",
 		"^@/theme/(.*)$",
-		"^@/(.*)$",
-		"^[./]"
+		"^[./]",
+		"^@/(.*)$"
 	],
 	"importOrderSeparation": true,
 	"importOrderSortSpecifiers": true,
