@@ -1,5 +1,6 @@
+import { dataFetch } from '@/lib/data-fetch'
 import { db } from '@/lib/db'
 
 export function getUsers() {
-	return db.selectFrom('users').selectAll().execute()
+	return dataFetch(() => db.selectFrom('users').selectAll().execute())
 }

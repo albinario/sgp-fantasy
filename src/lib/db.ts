@@ -8,7 +8,6 @@ const databaseUrl = process.env.DATABASE_URL
 if (!databaseUrl) {
 	throw new Error('DATABASE_URL environment variable is not set')
 }
-console.log('DATABASE_URL', process.env.DATABASE_URL)
 
 export const db = new Kysely<DB>({
 	dialect: new NeonDialect({
