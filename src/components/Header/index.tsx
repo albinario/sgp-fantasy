@@ -3,16 +3,13 @@ import Link from 'next/link'
 
 import { logo } from '@/config/brand'
 import { getViewer } from '@/lib/auth/get-viewer'
-import { flex } from '@/styles/flex.css'
-
-import { logoContainer } from './styles.css'
 
 export async function Header() {
 	const viewer = await getViewer()
 
 	return (
-		<div className={flex({ justify: 'between' })}>
-			<div className={logoContainer}>
+		<div className="flex justify-between p-2">
+			<div className="w-64">
 				<Image
 					alt={logo.alt}
 					height={logo.height}
@@ -22,7 +19,7 @@ export async function Header() {
 				/>
 			</div>
 
-			<div className={flex({ direction: 'column', gap: 'xs' })}>
+			<div className="flex flex-col items-end">
 				{viewer.isAuthenticated ? (
 					<div>
 						{viewer.db?.first_name} {viewer.db?.last_name}{' '}

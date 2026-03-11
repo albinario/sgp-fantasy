@@ -12,18 +12,24 @@ export type Generated<T> = T extends ColumnType<infer S, infer I, infer U>
 export type Timestamp = ColumnType<Date, Date | string, Date | string>;
 
 export interface Cities {
+  city_name: Generated<string>;
+  country_id: number;
   id: Generated<number>;
-  name: Generated<string>;
-  nation_id: number;
 }
 
 export interface Comments {
   comment: string;
-  date: Generated<Timestamp>;
+  created_at: Generated<Timestamp>;
   gp_id: number | null;
   id: Generated<number>;
-  reply_to: number | null;
+  reply_to_id: number | null;
   user_id: number;
+}
+
+export interface Countries {
+  country_code: Generated<string>;
+  country_name: Generated<string>;
+  id: Generated<number>;
 }
 
 export interface Gps {
@@ -31,22 +37,15 @@ export interface Gps {
   finished: number | null;
   gp: number;
   id: Generated<number>;
-  start: Timestamp | null;
-  wild_card: number | null;
-}
-
-export interface Nations {
-  id: Generated<number>;
-  name: Generated<string>;
+  start_date: Timestamp | null;
+  wild_card_id: number | null;
 }
 
 export interface Riders {
-  active: number | null;
+  country_id: number;
   id: Generated<number>;
-  name: Generated<string>;
-  nation_id: number;
-  number: number;
-  substitute: number | null;
+  rider_name: Generated<string>;
+  rider_number: number;
 }
 
 export interface RidersResults {
@@ -59,8 +58,8 @@ export interface RidersResults {
 }
 
 export interface Users {
-  auth0_id: string;
-  date_created: Generated<Timestamp>;
+  auth0_id: Generated<string>;
+  created_at: Generated<Timestamp>;
   email: Generated<string>;
   first_name: Generated<string>;
   id: Generated<number>;
@@ -69,7 +68,7 @@ export interface Users {
 }
 
 export interface UsersPicksLog {
-  date: Generated<Timestamp>;
+  created_at: Generated<Timestamp>;
   gp_id: number | null;
   id: Generated<number>;
   user_id: number | null;
@@ -78,8 +77,8 @@ export interface UsersPicksLog {
 export interface DB {
   cities: Cities;
   comments: Comments;
+  countries: Countries;
   gps: Gps;
-  nations: Nations;
   riders: Riders;
   riders_results: RidersResults;
   users: Users;

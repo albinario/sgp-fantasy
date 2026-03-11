@@ -1,13 +1,11 @@
 import { Fragment } from 'react/jsx-runtime'
 
-import { Card } from '@/components/Card'
+import { GpCard } from '@/components/GpCard'
 
 export default function Home() {
 	return (
 		<Fragment>
-			<Card>
-				<>Home</>
-			</Card>
+			<GpCard gpId={35} />
 		</Fragment>
 	)
 }
